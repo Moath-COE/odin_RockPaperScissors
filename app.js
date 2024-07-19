@@ -37,11 +37,14 @@ function getChoice(x) {
   return choice;
 }
 
-function playRound(humanChoice, computerChoice) {
+function playRound(humanChoice, computerChoice, round) {
   if (humanChoice == "Error" || humanChoice == "Error") {
     console.log("An error happened, please try again.");
     return;
   }
+  console.log(
+    "##############################################\nRound number: " + round
+  );
   console.log("You chose: " + humanChoice);
   console.log("Computer chose: " + computerChoice);
   if (humanChoice == "Rock") {
@@ -85,3 +88,19 @@ function playRound(humanChoice, computerChoice) {
     }
   }
 }
+
+function playGame() {
+  for (let i = 0; i < 5; i++) {
+    playRound(getHumanChoice(), getComputerChoice(), i + 1);
+  }
+  console.log("##############################################\n");
+  if (computerScore > playerScore) {
+    console.log("The computer has won the tournament!!");
+  } else {
+    console.log("You have won the tournament!!");
+  }
+  computerScore = 0;
+  playerScore = 0;
+}
+
+playGame();
