@@ -2,6 +2,8 @@
 let computerScore = 0;
 let playerScore = 0;
 
+// Ui
+
 // Functions
 
 function getComputerChoice() {
@@ -11,9 +13,9 @@ function getComputerChoice() {
 
 function getHumanChoice() {
   let choiceNum = parseInt(
-    prompt(`Choose your move: 
-        1.Rock 
-        2.Paper 
+    prompt(`Choose your move:
+        1.Rock
+        2.Paper
         3.Scissors`)
   );
   return getChoice(choiceNum);
@@ -103,4 +105,5 @@ function playGame() {
   playerScore = 0;
 }
 
-playGame();
+// Start the game
+// playGame();

@@ -6,6 +6,39 @@
     <title>Rock Paper Scissors</title>
   </head>
   <body>
+    <div class="container">
+      <div class="gm-hero">
+        <h1 class="title">Welcome to Rock, Paper, and Scissors game!</h1>
+        <p class="description">
+          In this game you are going to play against the computer. You have five
+          rounds to win.
+        </p>
+        <button class="gm-start btn" id="gm-start">Start thr game</button>
+      </div>
+      <div class="gm-canvas hidden" id="gm-canvas">
+        <h2 class="round-title">Round <span id="round-title"></span></h2>
+        <h3>Choose your next move:</h3>
+        <div class="choices">
+          <button class="gm-choice btn">Rock</button
+          ><button class="gm-choice btn">Paper</button
+          ><button class="gm-choice btn">Scissors</button>
+        </div>
+        <p class="player-choice">You chose: <span id="cmp-chs"></span></p>
+        <p class="computer-choice">
+          The computer chose: <span id="cmp-chs"></span>
+        </p>
+        <p class="round-winner">
+          The winner of this round is <span id="round-winner"></span>
+        </p>
+        <div class="scores">
+          <p>Your Score: <span id="computer-sc">0</span></p>
+          <p>Computer Score: <span id="player-sc">0</span></p>
+        </div>
+        <p class="gm-winner">
+          The winner of the game is: <span id="gm-winner"></span>
+        </p>
+      </div>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>
