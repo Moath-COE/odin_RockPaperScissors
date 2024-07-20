@@ -1,24 +1,37 @@
 // Variables
 let computerScore = 0;
 let playerScore = 0;
+let round = 1;
 
 // Ui
+// Vars
+const startBtn = document.getElementById("gm-start");
+const gameHero = document.querySelector(".gm-hero");
+const gameCanvas = document.getElementById("gm-canvas");
+const roundTitle = document.getElementById("round-title");
+const choicesBtn = document.querySelectorAll(".gm-choice");
+const plrChs = document.getElementById("plr-chs");
+const cmpChs = document.getElementById("cmp-chs");
+const roundWinner = document.getElementById("round-winner");
+const playerSc = document.getElementById("player-sc");
+const computerSc = document.getElementById("computer-sc");
+const gameWinner = document.getElementById("gm-winner");
+const gameEnd = document.querySelector(".gm-end");
+const gameEndBtn = document.querySelector(".gm-restart");
 
 // Functions
+// eventListeners
+startBtn.addEventListener("click", resetGame);
 
+choicesBtn.forEach((btn) => {
+  btn.addEventListener("click", playRound);
+});
+
+gameEndBtn.addEventListener("click", resetGame);
+// utilities
 function getComputerChoice() {
   let randomNum = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
   return getChoice(randomNum);
-}
-
-function getHumanChoice() {
-  let choiceNum = parseInt(
-    prompt(`Choose your move:
-        1.Rock
-        2.Paper
-        3.Scissors`)
-  );
-  return getChoice(choiceNum);
 }
 
 function getChoice(x) {
@@ -39,70 +52,80 @@ function getChoice(x) {
   return choice;
 }
 
-function playRound(humanChoice, computerChoice, round) {
+function playRound(e) {
+  let humanChoice = getChoice(parseInt(e.target.value));
+  let computerChoice = getComputerChoice();
   if (humanChoice == "Error" || humanChoice == "Error") {
     console.log("An error happened, please try again.");
     return;
   }
-  console.log(
-    "##############################################\nRound number: " + round
-  );
-  console.log("You chose: " + humanChoice);
-  console.log("Computer chose: " + computerChoice);
+  plrChs.innerText = humanChoice;
+  cmpChs.innerText = computerChoice;
   if (humanChoice == "Rock") {
     if (computerChoice == "Rock") {
-      console.log("Tie, no one wins.");
-      return;
+      roundWinner.innerText = "No one, Its a Tie!";
     } else if (computerChoice == "Paper") {
-      console.log("Computer Wins, Paper beats Rock!");
+      roundWinner.innerText = "The Computer! - Paper beats Rock!";
       computerScore++;
-      return;
     } else {
-      console.log("You Win, Rock beats Scissors!");
+      roundWinner.innerText = "You! - Rock beats Scissors!";
       playerScore++;
-      return;
     }
   } else if (humanChoice == "Paper") {
     if (computerChoice == "Paper") {
-      console.log("Tie, no one wins.");
-      return;
+      roundWinner.innerText = "No one, Its a Tie!";
     } else if (computerChoice == "Rock") {
-      console.log("You Win, Paper beats Rock!");
+      roundWinner.innerText = "You! - Paper beats Rock!";
       playerScore++;
-      return;
     } else {
-      console.log("Computer Wins, Scissors beats Paper!");
+      roundWinner.innerText = "The Computer! - Scissors beats Paper!";
       computerScore++;
-      return;
     }
   } else {
     if (computerChoice == "Scissors") {
-      console.log("Tie, no one wins.");
-      return;
+      roundWinner.innerText = "No one, Its a Tie!";
     } else if (computerChoice == "Rock") {
-      console.log("Computer Wins, Rock beats Scissors!");
+      roundWinner.innerText = "The Computer! - Rock beats Scissors!";
       computerScore++;
-      return;
     } else {
-      console.log("You Win, Scissors beats Paper!");
+      roundWinner.innerText = "You! - Scissors beats Paper!";
       playerScore++;
-      return;
     }
+  }
+  round++;
+  roundTitle.innerText = round;
+  playerSc.innerText = playerScore;
+  computerSc.innerText = computerScore;
+  checkGame();
+}
+
+function checkGame() {
+  if (round == 6) {
+    gameCanvas.classList.add("hidden");
+    gameEnd.classList.remove("hidden");
+    let winner;
+    if (computerScore > playerScore) {
+      winner = "The Computer!";
+    } else {
+      winner = "You!";
+    }
+    gameWinner.innerText = winner;
   }
 }
 
-function playGame() {
-  for (let i = 0; i < 5; i++) {
-    playRound(getHumanChoice(), getComputerChoice(), i + 1);
-  }
-  console.log("##############################################\n");
-  if (computerScore > playerScore) {
-    console.log("The computer has won the tournament!!");
-  } else {
-    console.log("You have won the tournament!!");
-  }
+function resetGame() {
   computerScore = 0;
   playerScore = 0;
+  round = 1;
+  plrChs.innerText = "";
+  cmpChs.innerText = "";
+  roundWinner.innerText = "";
+  roundTitle.innerText = round;
+  playerSc.innerText = playerScore;
+  computerSc.innerText = computerScore;
+  gameHero.classList.add("hidden");
+  gameCanvas.classList.remove("hidden");
+  gameEnd.classList.add("hidden");
 }
 
 // Start the game

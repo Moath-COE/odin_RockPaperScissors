@@ -17,14 +17,14 @@
         <button class="gm-start btn" id="gm-start">Start thr game</button>
       </div>
       <div class="gm-canvas hidden" id="gm-canvas">
-        <h2 class="round-title">Round <span id="round-title"></span></h2>
+        <h2 class="round-title">Round <span id="round-title">1</span></h2>
         <h3>Choose your next move:</h3>
         <div class="choices">
-          <button class="gm-choice btn">Rock</button
-          ><button class="gm-choice btn">Paper</button
-          ><button class="gm-choice btn">Scissors</button>
+          <button class="gm-choice btn" value="1">Rock</button
+          ><button class="gm-choice btn" value="2">Paper</button
+          ><button class="gm-choice btn" value="3">Scissors</button>
         </div>
-        <p class="player-choice">You chose: <span id="cmp-chs"></span></p>
+        <p class="player-choice">You chose: <span id="plr-chs"></span></p>
         <p class="computer-choice">
           The computer chose: <span id="cmp-chs"></span>
         </p>
@@ -32,12 +32,15 @@
           The winner of this round is <span id="round-winner"></span>
         </p>
         <div class="scores">
-          <p>Your Score: <span id="computer-sc">0</span></p>
-          <p>Computer Score: <span id="player-sc">0</span></p>
+          <p>Your Score: <span id="player-sc">0</span></p>
+          <p>Computer Score: <span id="computer-sc">0</span></p>
         </div>
+      </div>
+      <div class="gm-end hidden">
         <p class="gm-winner">
           The winner of the game is: <span id="gm-winner"></span>
         </p>
+        <button class="gm-restart btn">Play again</button>
       </div>
     </div>
     <script src="app.js"></script>

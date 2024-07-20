@@ -15,11 +15,12 @@
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 /* Style */
 
+/* Pregame interface */
 body {
   align-content: center;
   height: 100vh;
@@ -49,6 +50,7 @@ body {
   border: none;
   border-radius: 10px;
   font-weight: bolder;
+  color: white;
 }
 
 .btn:hover {
@@ -58,5 +60,48 @@ body {
 
 .gm-start {
   background-color: var(--accent);
-  color: white;
+}
+
+/* Game interface */
+.gm-canvas {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
+}
+
+.choices {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+.gm-choice {
+  flex: 1;
+  background-color: var(--prime);
+}
+
+#round-title,
+.cmp-chs,
+.plr-chs,
+#round-winner,
+#gm-winner {
+  color: var(--accent);
+}
+
+.scores {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* after game */
+.gm-winner {
+  margin-bottom: 20px;
+}
+
+.gm-restart {
+  background-color: var(--accent);
 }
